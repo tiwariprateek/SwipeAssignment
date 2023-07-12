@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SwipeAssignment</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+        <string-array name="ProductTypes">
+            <item>Service</item>
+            <item>Furniture</item>
+            <item>Product</item>
+            <item>Electronics</item>
+            <item>Food</item>
+            <item>Books</item>
+            <item>Sports</item>
+        </string-array>
+</resources>

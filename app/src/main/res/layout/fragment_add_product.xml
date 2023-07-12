@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.AddProductFragment"
+        android:orientation="vertical">
+
+        <Spinner
+            android:entries="@array/ProductTypes"
+            android:layout_margin="16dp"
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <EditText
+            android:id="@+id/product_name"
+            android:layout_margin="16dp"
+            android:hint="Product Name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/product_price"
+            android:layout_margin="16dp"
+            android:hint="Selling Price"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/product_tax"
+            android:layout_margin="16dp"
+            android:hint="Tax"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/submit_bttn"
+            android:layout_margin="16dp"
+            android:text="Save"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+
+
+    </LinearLayout>
+</layout>
