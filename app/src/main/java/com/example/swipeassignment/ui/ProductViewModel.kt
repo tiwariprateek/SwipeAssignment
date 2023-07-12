@@ -59,6 +59,7 @@ class ProductViewModel @Inject constructor(private val productRepository: Produc
     }
 
     fun addProduct(product:AddProductRequest){
+        _addProductResponse.postValue(NetworkResult.Loading())
         val textMediaType = "text/plain".toMediaType()
         val request : HashMap<String, RequestBody> = hashMapOf()
         request["product_name"] = product.productName.toRequestBody(textMediaType)

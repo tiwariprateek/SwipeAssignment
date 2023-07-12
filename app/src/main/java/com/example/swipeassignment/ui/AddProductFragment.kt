@@ -2,7 +2,6 @@ package com.example.swipeassignment.ui
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.os.Message
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.swipeassignment.R
 import com.example.swipeassignment.data.AddProductRequest
 import com.example.swipeassignment.databinding.FragmentAddProductBinding
 import com.example.swipeassignment.utils.NetworkResult
@@ -22,6 +22,7 @@ class AddProductFragment : Fragment() {
     private var _binding:FragmentAddProductBinding? = null
     private val viewModel by activityViewModels<ProductViewModel>()
     private val binding get() = _binding!!
+    lateinit var alertDialog: AlertDialog
     private val productTypes = listOf("Service","Furniture",
         "Product", "Electronics","Food", "Books", "Sports")
 
@@ -39,13 +40,16 @@ class AddProductFragment : Fragment() {
         viewModel.addProductResponse.observe(viewLifecycleOwner){
             when(it){
                 is NetworkResult.Error -> {
+                    dismissDialog()
                     Snackbar.make(requireView(),it.message.toString(), Snackbar.LENGTH_LONG).show()
                     Log.d(TAG, "onViewCreated: Error occurred ${it.message}")
                 }
                 is NetworkResult.Loading -> {
+                    startLoadingdialog()
                     Log.d(TAG, "onViewCreated: Loading")
                 }
                 is NetworkResult.Success -> {
+                    dismissDialog()
                     showSuccessAlert(it.data?.message!!)
                     Log.d(TAG, "onViewCreated: Success with data ${it.data}")
                 }
@@ -77,6 +81,18 @@ class AddProductFragment : Fragment() {
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
+    private fun startLoadingdialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        val inflater = requireActivity().layoutInflater
+        builder.setView(inflater.inflate(R.layout.progress_dialog, null))
+        builder.setCancelable(true)
+        alertDialog = builder.create()
+        alertDialog.show()
+    }
+    private fun dismissDialog(){
+        alertDialog.dismiss()
+    }
+
 
 
     override fun onDestroyView() {
