@@ -40,6 +40,7 @@ class ProductViewModel @Inject constructor(private val productRepository: Produc
     }
 
     private suspend fun getAllProducts(){
+        _productResponse.postValue(NetworkResult.Loading())
         val response = productRepository.getProducts()
         try {
             if (response.isSuccessful && response.body() != null) {

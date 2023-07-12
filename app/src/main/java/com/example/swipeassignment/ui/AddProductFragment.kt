@@ -45,7 +45,7 @@ class AddProductFragment : Fragment() {
                     Log.d(TAG, "onViewCreated: Error occurred ${it.message}")
                 }
                 is NetworkResult.Loading -> {
-                    startLoadingdialog()
+                    startLoadingDialog()
                     Log.d(TAG, "onViewCreated: Loading")
                 }
                 is NetworkResult.Success -> {
@@ -81,7 +81,7 @@ class AddProductFragment : Fragment() {
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
-    private fun startLoadingdialog() {
+    private fun startLoadingDialog() {
         val builder = AlertDialog.Builder(requireContext())
         val inflater = requireActivity().layoutInflater
         builder.setView(inflater.inflate(R.layout.progress_dialog, null))

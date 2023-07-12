@@ -42,9 +42,11 @@ class ListingFragment : Fragment() {
                     Log.d(TAG, "onViewCreated: Error occurred ${it.message}")
                 }
                 is NetworkResult.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                     Log.d(TAG, "onViewCreated: Loading")
                 }
                 is NetworkResult.Success -> {
+                    binding.progressBar.visibility = View.GONE
                     productAdapter.submitList(it.data)
                     Log.d(TAG, "onViewCreated: Success with data ${it.data}")
                 }
